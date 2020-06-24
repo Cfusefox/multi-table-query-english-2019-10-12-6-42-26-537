@@ -13,7 +13,11 @@ where id not in (
 	select studentId from student_course
 )
 # 5.Query all SQL with grades
-select * from student_course;
+select * from student
+where id in (
+	select studentId FROM student_course
+	GROUP BY studentId
+)
 # 6.Inquire about the information of classmates who have numbered 1 and also studied the course numbered 2
 select * from student
 where student.id in 
@@ -27,11 +31,13 @@ where studentId in (
 AND
 courseId = 1);
 # 7.Retrieve 1 student score with less than 60 scores in descending order
-select b.*, a.score
+select b.*
 from student_course a, student b
 where score < 60
 AND
 a.studentId = b.id
+AND
+a.courseId = 1
 ORDER BY score DESC
 # 8.Query the average grade of each course. The results are ranked in descending order of average grade. When the average grades are the same, they are sorted in ascending order by course number.
 SELECT courseId, AVG(score) average

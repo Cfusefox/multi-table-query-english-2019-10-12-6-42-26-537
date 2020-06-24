@@ -13,7 +13,7 @@ where id not in (
 	select studentId from student_course
 )
 # 5.Query all SQL with grades
-select * from student_course;
+
 # 6.Inquire about the information of classmates who have numbered 1 and also studied the course numbered 2
 select * from student
 where student.id in 
